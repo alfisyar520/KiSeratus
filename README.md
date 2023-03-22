@@ -7,7 +7,6 @@ To install this project, you can install with this command:
 ### `npm install --force`
 
 In the project directory, you can run:
-
 ### `npm start`
 
 Runs the app in the development mode.\
