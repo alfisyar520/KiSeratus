@@ -24,7 +24,7 @@ function App() {
 
       <Box>this is chakra</Box>
       <FormConfiguration />
-      <PreviewPage />
+      {/* <PreviewPage /> */}
     </div>
   );
 }
