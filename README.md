@@ -6,9 +6,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To install this project, you can install with this command:
 ### `npm install --force`
 
-This must be installed, because it uses React version 17.0.2
-### `npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^5 --force`
-
 In the project directory, you can run:
 ### `npm start`
 
