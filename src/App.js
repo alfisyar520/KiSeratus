@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
+import Informasi from "./pages/informasi";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
+        </Route>
+        <Route path="/informasi" element={<Layout />}>
+          <Route index element={<Informasi />} />
         </Route>
         
       </Routes>
