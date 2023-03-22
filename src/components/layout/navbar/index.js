@@ -1,5 +1,5 @@
-import { UnlockIcon } from "@chakra-ui/icons";
-import React from "react";
+import { UnlockIcon, LockIcon } from "@chakra-ui/icons";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.scss";
 
 import {
@@ -15,29 +15,63 @@ import {
 } from "@chakra-ui/react";
 
 export default function Navbar() {
+  const [navbarName, setNavbarName] = useState("");
   const toast = useToast();
 
+  useEffect(() => {
+    switch (window.location.pathname) {
+      case '/silsilah-keluarga':
+        setNavbarName("Silsilah Keluarga")
+        break;
+      default:
+        setNavbarName("Dashboard")
+        break;
+    }
+  });
+
+  const cobaSet = () => {
+    localStorage.setItem("token", "tukangKeluarga");
+  }
+
   const handleLogOut = () => {
-    toast({
-      title: "Logged out.",
-      description: "Successfully logged out",
-      duration: 10000,
-      isClosable: true,
-      position: "top",
-      status: "success",
-      icon: <UnlockIcon />,
-    });
+    const isAuth = localStorage.getItem("token");
+    console.log('isAuth ', isAuth)
+    if (isAuth) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('tree_data');
+
+      toast({
+        title: "Logged out.",
+        description: "Successfully logged out",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+        status: "success",
+        icon: <UnlockIcon />,
+      });
+    } else {
+      toast({
+        title: "Logged out.",
+        description: "Failed logged out",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+        status: "error",
+        icon: <LockIcon />,
+      });
+    }
+
   };
 
   return (
     <Flex as="nav" p="0px" mb="60px" alignItems="center">
       <Heading as="h1" fontSize="1.5em">
-        Dashboard
+        {navbarName}
       </Heading>
       <Spacer />
 
       <HStack spacing="20px">
-        <Avatar name="tukang" className={styles.profilAvatar}>
+        <Avatar name="tukang" className={styles.profilAvatar} onClick={() => cobaSet()}>
           <AvatarBadge width="1.3em" bg="green">
             <Text fontSize="xs" color="white">
               TK
