@@ -18,7 +18,7 @@ export default function Sidebar() {
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="keluarga">
+        <NavLink to="/silsilah-keluarga">
           <ListIcon as={AtSignIcon} color="white" />
           Keluarga
         </NavLink>
