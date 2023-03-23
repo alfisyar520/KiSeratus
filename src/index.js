@@ -14,6 +14,7 @@ import Formula from "./pages/formula";
 import Informasi from "./pages/informasi";
 
 import "./assets/styles/global.scss";
+import FormCanggih from "./pages/form_canggih";
 
 
 
@@ -33,6 +34,7 @@ ReactDOM.render(
               <Route path="/jadwal" element={<Jadwal />} />
               <Route path="/formula-generator" element={<Formula />} />
               <Route path="/informasi" element={<Informasi />} />
+              <Route path="/form-canggih" element={<FormCanggih />} />
             </Route>
           </Route>
         </Routes>
