@@ -32,8 +32,6 @@ import * as Yup from 'yup';
 import DatePicker from "react-datepicker";
 import { Checkbox } from "@chakra-ui/react";
 
-import '../assets/style/jadwal_4.0.css';
-
 function Jadwal() {
   const [isOpenDrawer, setOpenDrawer] = useState(false);
   const [isOpenModal, setOpenModal] = useState(false);
@@ -78,6 +76,7 @@ function Jadwal() {
     setStartDate(eventClickInfo.event.start);
     setEndDate(eventClickInfo.event.end);
     setSelectedEvent(eventClickInfo.event);
+    setOneDaysCheck(eventClickInfo.event.end === null);
     setInitialForm({
       title: eventClickInfo.event.title,
     });
@@ -122,6 +121,7 @@ function Jadwal() {
         headerToolbar={{
           left: "prev,next today",
           center: "title",
+          right: ""
         }}
         initialView="dayGridMonth"
         selectable={true}
@@ -174,7 +174,7 @@ function Jadwal() {
             <Form>
               <DrawerContent>
                 <DrawerCloseButton />
-                <DrawerHeader>Edit Event</DrawerHeader>
+                <DrawerHeader>Edit Event : {selectedEvent.title}</DrawerHeader>
                 <DrawerBody>
                   <Field name="title">
                     {({ field }) => <Input {...field} placeholder="title" />}
@@ -224,10 +224,10 @@ function Jadwal() {
                 </DrawerBody>
 
                 <DrawerFooter>
-                  <Button colorScheme="red" onClick={deleteEvent}>
+                  <Button colorScheme="red" mr={3} onClick={deleteEvent}>
                     Delete
                   </Button>
-                  <Button onClick={onClose}>Close</Button>
+                  <Button onClick={onClose} mr={3}>Close</Button>
                   <Button type="submit" colorScheme="blue">
                     Submit
                   </Button>
@@ -280,9 +280,12 @@ function Jadwal() {
                 <ModalCloseButton />
                 <ModalBody>
                   <Field name="title">
-                    {({ field }) => <Input {...field} placeholder="title" />}
+                    {({ field }) => <Input {...field} placeholder="Event Title" />}
                   </Field>
+                  <div className="error-message">
                   <ErrorMessage name="title" />
+                  </div>
+                  
                 </ModalBody>
 
                 <ModalFooter>
