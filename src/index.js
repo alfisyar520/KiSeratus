@@ -7,6 +7,7 @@ import App from './App';
 import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import SilsilahKeluarga from "./pages/silsilah_keluarga";
+import FormConfiguration from "./components/layout/fomrUnik";
 
 import './assets/styles/global.scss';
 
@@ -19,8 +20,8 @@ ReactDOM.render(
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Layout />}>
               <Route index element={<Dashboard />} />
-              <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />}>
-            </Route>
+              <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />} />
+              <Route path="/form-unik" element={<FormConfiguration />} />
             </Route>
           </Route>
         </Routes>
