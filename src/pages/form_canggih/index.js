@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-import { Box, Button, FormControl, FormLabel, Input, Select, SimpleGrid, Textarea, useToast} from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  SimpleGrid,
+  Textarea,
+  Text,
+  useToast,
+  Image,
+} from "@chakra-ui/react";
 
 
 const FormCanggih = () => {
@@ -14,6 +26,13 @@ const FormCanggih = () => {
   const [resume, setResume] = useState('');
   const [picture, setPicture] = useState(null);
   const [isTriggerSave, setIsTriggerSave] = useState(false);
+  const [initialToast, setInitialToast] = useState({
+    title: "Form telah tersimpan otomatis.",
+    status: "success",
+    duration: 3000,
+    position: "top",
+    isClosable: true,
+  });
 
   useEffect(() => {
     // get data from localStorage
@@ -52,12 +71,7 @@ const FormCanggih = () => {
         picture,
       }));
 
-      toast({
-        title: 'Form telah tersimpan otomatis.',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
+      toast(initialToast);
     }, 1000 * 15);
 
     return () => {
@@ -98,76 +112,110 @@ const FormCanggih = () => {
         },
       })
 
-      toast({
-        title: 'Form telah tersimpan otomatis.',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
+      toast(initialToast);
     }
     else {
-      toast({
-        title: 'Tidak ada koneksi internet. Form akan tersimpan otomatis.',
-        status: 'warning',
-        duration: 3000,
-        isClosable: true,
-      })
+      toast({ ...initialToast, title: "Tidak ada koneksi internet. Form akan tersimpan otomatis." });
     }
     setIsTriggerSave(false);
   }
 
   return (
-    <Box maxWidth={600}>
+    <Box
+      maxWidth={600}
+      borderWidth="1px"
+      p={4}
+      borderRadius="lg"
+      overflow="hidden"
+    >
+      <Text fontSize="xl" mb={3}>Form Canggih</Text>
       <form onSubmit={handleSubmit}>
         <SimpleGrid columns={1} spacing={2}>
           <FormControl id="name">
             <FormLabel>Nama</FormLabel>
-            <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <Input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </FormControl>
-          
+
           <FormControl id="age" w={150}>
             <FormLabel>Usia (tahun)</FormLabel>
-            <Input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+            <Input
+              type="number"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
           </FormControl>
-          
+
           <FormControl id="marital-status" w={200}>
             <FormLabel>Status Perkawinan</FormLabel>
-            <Select value={maritalStatus} onChange={(e) => setMaritalStatus(e.target.value)}>
+            <Select
+              value={maritalStatus}
+              onChange={(e) => setMaritalStatus(e.target.value)}
+            >
               <option value="belum_menikah">Belum Menikah</option>
               <option value="menikah">Menikah</option>
             </Select>
           </FormControl>
-          
+
           <FormControl id="address">
             <FormLabel>Alamat</FormLabel>
-            <Input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+            <Input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
           </FormControl>
 
           <FormControl id="job-title" w={350}>
             <FormLabel>Pekerjaan</FormLabel>
-            <Input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
-          </FormControl>
-          
-          <FormControl id="resume">
-            <FormLabel>Ringkasan Kehidupan</FormLabel>
-            <Textarea value={resume} onChange={(e) => setResume(e.target.value)} />
-          </FormControl>
-          
-          <FormControl id="picture">
-            <FormLabel>Picture</FormLabel>
-            <Input type="file" onChange={(e) => {
-              const file = e.target.files[0];
-              setPicture(file);
-              console.log(file);
-            }} />
+            <Input
+              type="text"
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
+            />
           </FormControl>
 
-          <Button type="submit" mt={10}>Simpan</Button>
+          <FormControl id="resume">
+            <FormLabel>Ringkasan Kehidupan</FormLabel>
+            <Textarea
+              value={resume}
+              onChange={(e) => setResume(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl id="picture">
+            {picture && (
+              <Image
+                src={picture}
+                boxSize="150px"
+                borderRadius="15px"
+                objectFit="cover"
+                alt="image preview"
+              />
+            )}
+            <FormLabel>Upload Foto</FormLabel>
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const [file] = e.target.files;
+                if (file) {
+                  setPicture(URL.createObjectURL(file));
+                }
+              }}
+            />
+          </FormControl>
+
+          <Button type="submit" mt={10}>
+            Simpan
+          </Button>
         </SimpleGrid>
       </form>
     </Box>
-
-  )
+  );
 }
 
 export default FormCanggih;
