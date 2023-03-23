@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Input, Flex } from '@chakra-ui/react';
+import { Button, Input, Flex, Modal, ModalOverlay, ModalContent, Box, Spacer } from '@chakra-ui/react';
 import { evaluate } from 'mathjs';
 
 function FieldFormula({ display }) {
@@ -43,6 +43,8 @@ function Calculator({ handleInput, handleClear }) {
 }
 
 function Formula() {
+  const [formulas, setFormulas] = useState([])
+  const [isOpen, setIsOpen] = useState(false);
   const [display, setDisplay] = useState('0');
   const [result, setResult] = useState('0');
 
@@ -64,10 +66,15 @@ function Formula() {
     setDisplay('0');
   }
 
-  function onCalculate() {
-    const expression = display;
+  function onCalculate(formula) {
+    const expression = formula;
     setResult(evaluate(expression.replaceAll(/(sin\(|cos\(|tan\()(\d+)$/g, "$1$2)")));
     setDisplay('0');
+  }
+
+  function handleAddFormula() {
+    const added = display.replaceAll(/(sin\(|cos\(|tan\()(\d+)$/g, "$1$2)");
+    setFormulas((prevFormulas) => ([...prevFormulas, added]))
   }
 
   useEffect(() => {
@@ -83,19 +90,42 @@ function Formula() {
   }, [onCalculate]);
 
   return (
-    <Flex gap={2}>
-        <Flex gap={2} direction="column" align="center" padding={2} borderRadius="md" background="gray.400">
-            <FieldFormula display={display} />
-            <Calculator
-                handleClear={handleClear}
-                handleInput={handleInput}
-            />
+    <>
+        <Flex mb={5}>
+          <Button onClick={() => setIsOpen(true)}>Tambah Formula</Button>
+          <Spacer></Spacer>
+          <Flex background="salmon" p={4} direction="column">
+              Result: {result}
+          </Flex>
         </Flex>
-        <Flex direction="column">
-            Result: {result}
-            <Button onClick={onCalculate}>Hitung!</Button>
+    <Flex gap={2}>
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <ModalOverlay />
+          <ModalContent>
+            <Flex gap={2} direction="column" align="center" padding={2} borderRadius="md" background="gray.400">
+                <FieldFormula display={display} />
+                <Calculator
+                    handleClear={handleClear}
+                    handleInput={handleInput}
+                />
+                <Button onClick={handleAddFormula}>Tambah Formula</Button>
+            </Flex>
+          </ModalContent>
+        </Modal>
+        <Flex gap={2} width="full" direction="column">
+          {formulas.map(f => (
+            <Flex gap={2}>
+              <Input
+                value={f}
+                disabled
+              />
+              <Button onClick={() => onCalculate(f)}>Hitung</Button>
+            </Flex>
+          ))}
+          <Flex></Flex>
         </Flex>
     </Flex>
+    </>
   );
 }
 
