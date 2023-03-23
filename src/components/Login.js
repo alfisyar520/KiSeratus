@@ -42,6 +42,7 @@ import { USERS } from '../constants/LIST_USERS';
                         title: 'Selamat datang di KiSeratus',
                         status: 'success',
                         isClosable: true,
+                        position: "top",
                     });
                     localStorage.setItem("USER", JSON.stringify(user));
                     return navigate("/");
@@ -52,6 +53,7 @@ import { USERS } from '../constants/LIST_USERS';
                         title: 'Akun Belum memiliki peran',
                         status: 'warning',
                         isClosable: true,
+                        position: "top",
                     });
                     return;
                 }
@@ -61,6 +63,7 @@ import { USERS } from '../constants/LIST_USERS';
                 title: 'ID / Password salah',
                 status: 'error',
                 isClosable: true,
+                position: "top",
             });
             return;
         }
@@ -69,6 +72,7 @@ import { USERS } from '../constants/LIST_USERS';
             title: 'Akun tidak terdaftar',
             status: 'error',
             isClosable: true,
+            position: "top",
         });
     };
 

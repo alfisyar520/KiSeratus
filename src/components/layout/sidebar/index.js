@@ -14,10 +14,8 @@ import { useState } from "react";
 
 export default function Sidebar() {
   const user = JSON.parse(localStorage.getItem('USER'));
-  // console.log(user.roles)
   // list user = all, jadwalKeluarga, formUnikFormula, formCanggihTabel
-  const [ruleUser, setRuleUser] = useState("all");
-  console.log(user)
+  
   if (user?.roles === "jadwalKeluarga") {
     return (
       <List color="white" fontSize="1.2em" spacing={4}>
