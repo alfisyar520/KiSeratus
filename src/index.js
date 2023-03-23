@@ -6,6 +6,8 @@ import Dashboard from './components/pages/Dashboard';
 import { ChakraProvider } from '@chakra-ui/react'
 import App from './App';
 
+import './assets/styles/global.scss';
+
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider resetCSS={true}>
