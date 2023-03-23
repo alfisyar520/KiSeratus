@@ -41,6 +41,9 @@ export default function Navbar() {
       case '/informasi':
         setNavbarName("Informasi")
         break;
+      case '/table':
+        setNavbarName("Table")
+        break;
       default:
         setNavbarName("Dashboard")
         break;

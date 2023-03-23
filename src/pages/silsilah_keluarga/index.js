@@ -82,7 +82,6 @@ const SilsilahKeluarga = () => {
   return (
     <div style={{ padding: "0 15px" }}>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <h2>Silsilah Keluarga</h2>
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
         >

@@ -8,15 +8,13 @@ import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import SilsilahKeluarga from "./pages/silsilah_keluarga";
 import FormConfiguration from "./components/layout/fomrUnik";
+import TablePage from './pages/table';
 import Jadwal from "./pages/jadwal_4.0";
 import Formula from "./pages/formula";
 import Informasi from "./pages/informasi";
 
 import "./assets/styles/global.scss";
 import FormCanggih from "./pages/form_canggih";
-
-
-
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,9 +27,10 @@ ReactDOM.render(
               <Route index element={<Dashboard />} />
               <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />} />
               <Route path="/form-unik" element={<FormConfiguration />} />
-              <Route path="/jadwal" element={<Jadwal />}/>
-              <Route path="/formula-generator" element={<Formula />}/>
-              <Route path="/informasi" element={<Informasi />}/>
+              <Route path="/table" element={<TablePage />} />
+              <Route path="/jadwal" element={<Jadwal />} />
+              <Route path="/formula-generator" element={<Formula />} />
+              <Route path="/informasi" element={<Informasi />} />
               <Route path="/form-canggih" element={<FormCanggih />} />
             </Route>
           </Route>
