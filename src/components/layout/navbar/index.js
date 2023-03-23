@@ -26,6 +26,9 @@ export default function Navbar() {
       case '/silsilah-keluarga':
         setNavbarName("Silsilah Keluarga")
         break;
+      case '/form-unik':
+        setNavbarName("Form Unik")
+        break;
       default:
         setNavbarName("Dashboard")
         break;
