@@ -117,7 +117,7 @@ import { USERS } from '../constants/LIST_USERS';
                     <Stack spacing={15}>
                         <Button
                         type='submit'
-                        bg={'#146C94'}
+                        bg={'#19A7CE'}
                         color={'white'}
                         disabled={!(formik.isValid && formik.dirty)}
                         _hover={{
