@@ -19,9 +19,8 @@ ReactDOM.render(
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Layout />}>
               <Route index element={<Dashboard />} />
+              <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />}>
             </Route>
-            <Route path="/silsilah-keluarga" element={<Layout />}>
-              <Route index element={<SilsilahKeluarga />} />
             </Route>
           </Route>
         </Routes>
