@@ -26,11 +26,13 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-import { Grid, GridItem } from "@chakra-ui/react";
-import { Formik, Form, Field } from "formik";
+import { Grid } from "@chakra-ui/react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from 'yup';
 import DatePicker from "react-datepicker";
 import { Checkbox } from "@chakra-ui/react";
-import { createEventId } from "../event-utils";
+
+import '../assets/style/jadwal_4.0.css';
 
 function Jadwal() {
   const [isOpenDrawer, setOpenDrawer] = useState(false);
@@ -100,10 +102,16 @@ function Jadwal() {
     setOpenDrawer(false);
   };
 
+  const validationSchema = Yup.object().shape({
+    title: Yup.string()
+      .required('Title is required')
+  });
+
+
   useEffect(() => {
     if (localStorage.getItem("events") !== null) {
       const dataEvents = JSON.parse(localStorage.getItem("events"));
-      setEvents({ events: dataEvents , eventColor: 'blue'});
+      setEvents({ events: dataEvents, eventColor: "blue" });
     }
   }, []);
 
@@ -158,7 +166,7 @@ function Jadwal() {
             }
 
             localStorage.setItem("events", JSON.stringify(tempArray));
-            setEvents({ events: tempArray , eventColor: 'blue'});
+            setEvents({ events: tempArray, eventColor: "blue" });
             setOpenDrawer(false);
           }}
         >
@@ -166,11 +174,12 @@ function Jadwal() {
             <Form>
               <DrawerContent>
                 <DrawerCloseButton />
-                <DrawerHeader>Create your account</DrawerHeader>
+                <DrawerHeader>Edit Event</DrawerHeader>
                 <DrawerBody>
                   <Field name="title">
                     {({ field }) => <Input {...field} placeholder="title" />}
                   </Field>
+                  
                   <Checkbox
                     isChecked={oneDaysCheck}
                     onChange={(e) => setOneDaysCheck(!oneDaysCheck)}
@@ -196,22 +205,22 @@ function Jadwal() {
                           setStartDate(formattedDate);
                         }}
                         showTimeSelect={false}
+                        className="custom-datepicker"
                       />
                     </div>
                     <div>
-                    End Day
-                    <DatePicker
-                      selected={date}
-                      onChange={(date) => setEndDate(date)}
-                      showTimeSelect={false}
-                      disabled={oneDaysCheck}
-                    />
+                      End Day
+                      <DatePicker
+                        selected={date}
+                        onChange={(date) => setEndDate(date)}
+                        showTimeSelect={false}
+                        disabled={oneDaysCheck}
+                        className="custom-datepicker"
+                      />
                     </div>
                   </Grid>
                   <div></div>
-                  <div>
-                    
-                  </div>
+                  <div></div>
                 </DrawerBody>
 
                 <DrawerFooter>
@@ -230,54 +239,64 @@ function Jadwal() {
       </Drawer>
       <Modal isOpen={isOpenModal} onClose={onCloseModal}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Formik initialValues={initialFormNewEvent}
-            onSubmit={(values) => {
-              const calendarApi = seletedInfo.view.calendar;
-              let dataEvents = [];
-              calendarApi.unselect();
-              const id = createEventId();
-              if (values.title) {
-                  if (localStorage.getItem("events") !== null) {
-                    dataEvents = JSON.parse(localStorage.getItem("events"));
-                  }
-                  dataEvents.push({
-                    id: id,
-                    title: values.title,
-                    start: seletedInfo.startStr,
-                    end: seletedInfo.endStr,
-                    allDay: seletedInfo.allDay,
-                  });
-                  localStorage.setItem("events", JSON.stringify(dataEvents));
-                  setEvents({ events: dataEvents , eventColor: '#378006'});
-                  setOpenModal(false);
-                }
-            }}
-            >
-              {() => (
-                <Form>
+        <Formik
+          initialValues={initialFormNewEvent}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            const calendarApi = seletedInfo.view.calendar;
+
+            let dataEvents = [];
+            calendarApi.unselect();
+            var highestId = 0;
+
+            if (localStorage.getItem("events") !== null) {
+              const tempArray = JSON.parse(localStorage.getItem("events"));
+              highestId = tempArray.reduce(function (prev, current) {
+                return prev.id > current.id ? prev : current;
+              }).id;
+            }
+
+            if (values.title) {
+              if (localStorage.getItem("events") !== null) {
+                dataEvents = JSON.parse(localStorage.getItem("events"));
+              }
+              dataEvents.push({
+                id: highestId + 1,
+                title: values.title,
+                start: seletedInfo.startStr,
+                end: seletedInfo.endStr,
+                allDay: seletedInfo.allDay,
+              });
+              localStorage.setItem("events", JSON.stringify(dataEvents));
+              setEvents({ events: dataEvents, eventColor: "#378006" });
+              setOpenModal(false);
+            }
+          }}
+        >
+          {() => (
+            <Form>
+              <ModalContent>
+                <ModalHeader>Add New Event</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
                   <Field name="title">
-                    {({ field }) => <Input {...field} placeholder="title"/>}
+                    {({ field }) => <Input {...field} placeholder="title" />}
                   </Field>
+                  <ErrorMessage name="title" />
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button colorScheme="red" mr={3} onClick={onCloseModal}>
+                    Cancel
+                  </Button>
                   <Button type="submit" colorScheme="blue">
                     Submit
                   </Button>
-                </Form>
-              )}
-
-            </Formik>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
+                </ModalFooter>
+              </ModalContent>
+            </Form>
+          )}
+        </Formik>
       </Modal>
     </>
   );
