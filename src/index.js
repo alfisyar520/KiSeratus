@@ -9,8 +9,12 @@ import Dashboard from "./pages/dashboard";
 import SilsilahKeluarga from "./pages/silsilah_keluarga";
 import FormConfiguration from "./components/layout/fomrUnik";
 import Jadwal from "./pages/jadwal_4.0";
+import Formula from "./pages/formula";
+import Informasi from "./pages/informasi";
 
 import "./assets/styles/global.scss";
+
+
 
 
 ReactDOM.render(
@@ -25,6 +29,8 @@ ReactDOM.render(
               <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />} />
               <Route path="/form-unik" element={<FormConfiguration />} />
               <Route path="/jadwal" element={<Jadwal />}/>
+              <Route path="/formula-generator" element={<Formula />}/>
+              <Route path="/informasi" element={<Informasi />}/>
             </Route>
           </Route>
         </Routes>
