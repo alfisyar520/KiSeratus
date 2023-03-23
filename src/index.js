@@ -16,9 +16,6 @@ import Informasi from "./pages/informasi";
 import "./assets/styles/global.scss";
 import FormCanggih from "./pages/form_canggih";
 
-
-
-
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider resetCSS={true}>
