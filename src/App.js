@@ -1,31 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-import { Box, Container } from '@chakra-ui/react'
-import PreviewPage from './containers/fomConfig';
-import FormConfiguration from './components/fomrUnik';
+import * as React from "react";
+import { Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+
+import Layout from "./components/layout";
+import FormConfiguration from "./components/layout/fomrUnik";
+import Dashboard from "./pages/dashboard";
+import SilsilahKeluarga from "./pages/silsilah_keluarga";
 
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-
-      <Box>this is chakra</Box>
-      <FormConfiguration />
-      {/* <PreviewPage /> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+        <Route path="/silsilah-keluarga" element={<Layout />}>
+          <Route index element={<SilsilahKeluarga />} />
+        </Route>
+        <Route path="/form-unik" element={<Layout />}>
+          <Route index element={<FormConfiguration />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
