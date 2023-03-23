@@ -13,10 +13,10 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 export default function Sidebar() {
+  const user = JSON.parse(localStorage.getItem('USER'));
   // list user = all, jadwalKeluarga, formUnikFormula, formCanggihTabel
-  const [ruleUser, setRuleUser] = useState("all");
-
-  if (ruleUser === "jadwalKeluarga") {
+  
+  if (user?.roles === "jadwalKeluarga") {
     return (
       <List color="white" fontSize="1.2em" spacing={4}>
         <ListItem>
@@ -39,7 +39,7 @@ export default function Sidebar() {
         </ListItem>
       </List>
     );
-  } else if (ruleUser === "formUnikFormula") {
+  } else if (user?.roles === "formUnikFormula") {
     return (
       <List color="white" fontSize="1.2em" spacing={4}>
         <ListItem>
@@ -62,7 +62,7 @@ export default function Sidebar() {
         </ListItem>
       </List>
     );
-  } else if (ruleUser === "formCanggihTabel") {
+  } else if (user?.roles === "formCanggihTabel") {
     return (
       <List color="white" fontSize="1.2em" spacing={4}>
         <ListItem>
@@ -131,7 +131,7 @@ export default function Sidebar() {
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="form-canggih">
+          <NavLink to="informasi">
             <ListIcon as={InfoIcon} color="white" />
             Informasi
           </NavLink>

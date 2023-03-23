@@ -1,6 +1,7 @@
 import { UnlockIcon, LockIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.scss";
+import { useNavigate } from 'react-router-dom';
 
 import {
   Flex,
@@ -17,11 +18,16 @@ import {
 export default function Navbar() {
   const [navbarName, setNavbarName] = useState("");
   const toast = useToast();
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('USER'));
 
   useEffect(() => {
     switch (window.location.pathname) {
       case '/silsilah-keluarga':
         setNavbarName("Silsilah Keluarga")
+        break;
+      case '/form-unik':
+        setNavbarName("Form Unik")
         break;
       default:
         setNavbarName("Dashboard")
@@ -29,17 +35,12 @@ export default function Navbar() {
     }
   });
 
-  const cobaSet = () => {
-    localStorage.setItem("token", "tukangKeluarga");
-  }
-
   const handleLogOut = () => {
-    const isAuth = localStorage.getItem("token");
-    console.log('isAuth ', isAuth)
+    const isAuth = localStorage.getItem("USER");
     if (isAuth) {
-      localStorage.removeItem('token');
+      localStorage.removeItem('USER');
       localStorage.removeItem('tree_data');
-
+      
       toast({
         title: "Logged out.",
         description: "Successfully logged out",
@@ -49,6 +50,8 @@ export default function Navbar() {
         status: "success",
         icon: <UnlockIcon />,
       });
+
+      return navigate("/login");
     } else {
       toast({
         title: "Logged out.",
@@ -71,14 +74,14 @@ export default function Navbar() {
       <Spacer />
 
       <HStack spacing="20px">
-        <Avatar name="tukang" className={styles.profilAvatar} onClick={() => cobaSet()}>
+        <Avatar name={user?.name} className={styles.profilAvatar} color="white">
           <AvatarBadge width="1.3em" bg="green">
             <Text fontSize="xs" color="white">
               TK
             </Text>
           </AvatarBadge>
         </Avatar>
-        <Text>Tukang Keluarga</Text>
+        <Text>{user?.name}</Text>
         <Button className={styles.buttonLogOut} onClick={() => handleLogOut()}>
           Logout
         </Button>
