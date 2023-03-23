@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import SilsilahKeluarga from "./pages/silsilah_keluarga";
+import FormCanggih from "./pages/form_canggih";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         </Route>
         <Route path="/silsilah-keluarga" element={<Layout />}>
           <Route index element={<SilsilahKeluarga />} />
+        </Route>
+        <Route path="/form-canggih" element={<Layout />}>
+          <Route index element={<FormCanggih />} />
         </Route>
         
       </Routes>
