@@ -1,27 +1,18 @@
-import * as React from "react";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
-
-import Layout from "./components/layout";
-import FormConfiguration from "./components/layout/fomrUnik";
-import Dashboard from "./pages/dashboard";
-import SilsilahKeluarga from "./pages/silsilah_keluarga";
+import { useEffect } from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate();
+  const user = localStorage.getItem('USER');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.pathname.includes('/login') && !user) {
+      navigate("/login");
+    }
+  }, [location.pathname])
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-        </Route>
-        <Route path="/silsilah-keluarga" element={<Layout />}>
-          <Route index element={<SilsilahKeluarga />} />
-        </Route>
-        <Route path="/form-unik" element={<Layout />}>
-          <Route index element={<FormConfiguration />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Outlet />
   );
 }
 
