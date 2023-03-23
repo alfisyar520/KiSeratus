@@ -26,8 +26,20 @@ export default function Navbar() {
       case '/silsilah-keluarga':
         setNavbarName("Silsilah Keluarga")
         break;
+      case '/jadwal':
+        setNavbarName("Jadwal")
+        break;
       case '/form-unik':
         setNavbarName("Form Unik")
+        break;
+      case '/formula-generator':
+        setNavbarName("Formula Generator")
+        break;
+      case '/form-canggih':
+        setNavbarName("Form Canggih")
+        break;
+      case '/informasi':
+        setNavbarName("Informasi")
         break;
       default:
         setNavbarName("Dashboard")
