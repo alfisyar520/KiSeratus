@@ -1,0 +1,15 @@
+.custom-datepicker {
+  background: inherit;
+  padding: 8px;
+  border-radius: var(--chakra-radii-md);
+  border: 1px solid;
+  border-color: inherit;
+}
+
+.custom-datepicker:disabled {
+  background-color: #e6e6e6;
+}
+
+.error-message{
+  color:red;
+}

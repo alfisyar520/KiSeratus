@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .wrapperPieDoughnut {
+    display: flex;
+    width: 100%;
+    gap: 48px;
+    justify-content: start;
+  }
+}
