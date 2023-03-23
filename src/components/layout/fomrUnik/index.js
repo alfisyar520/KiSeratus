@@ -9,6 +9,7 @@ import {
   HStack,
   Box
 } from "@chakra-ui/react";
+import { PreviewPage } from "./previewPage";
 
 const inputTypes = ["text", "number", "date"];
 const typeNumber = ["integer", "float", "positive", "negative"]
@@ -45,7 +46,8 @@ function FormConfiguration() {
     e.preventDefault();
     console.log(inputs);
     // do something with the form configuration data
-    localStorage.setItem("result", JSON.stringify(inputs))
+    localStorage.setItem("result", JSON.stringify(inputs) || [])
+    window.location.reload()
   };
 
   // console.log("input types", inputs.type)
@@ -72,25 +74,10 @@ function FormConfiguration() {
           <FormControl>
             <FormLabel>Label</FormLabel>
             <Input
-              type={input.type}
+              type="text"
               value={input.label}
               onChange={(e) => handleLabelChange(index, e.target.value)}
             />
-
-            <Box>
-              {input.type === "number" ? (
-                <Select
-                value={input.type}
-                onChange={(e) => handleTypeChange(index, e.target.value)}
-              >
-                {typeNumber.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </Select>
-              ) : null}
-            </Box>
           </FormControl>
 
           <Button onClick={() => handleRemoveInput(index)}>Remove</Button>
@@ -100,6 +87,8 @@ function FormConfiguration() {
       <Button colorScheme="blue" onClick={handleSubmit}>
         Submit
       </Button>
+
+      <PreviewPage />
     </VStack>
   );
 }
