@@ -4,6 +4,7 @@ import BarChart from "./components/BarChart";
 import DoughnutChart from "./components/DoughnutChart";
 import LineChart from "./components/LineChart";
 import PieChart from "./components/PieChart";
+import PolarChart from "./components/PolarChart";
 import useIndex from "./index.hook";
 import styles from "./index.module.scss";
 
@@ -19,6 +20,7 @@ const Informasi = () => {
         <PieChart data={data} loading={loading} />
         <DoughnutChart data={data} loading={loading} />
       </div>
+      <PolarChart data={data} loading={loading} />
     </div>
   );
 };
