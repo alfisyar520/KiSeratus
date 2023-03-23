@@ -80,11 +80,13 @@ function FormConfiguration() {
             />
           </FormControl>
 
-          <Button onClick={() => handleRemoveInput(index)}>Remove</Button>
+         <Box mb="12">
+          <Button backgroundColor={"#ff0000"} onClick={() => handleRemoveInput(index)}>Remove</Button>
+         </Box>
         </HStack>
       ))}
-      <Button onClick={handleAddInput}>Add New form Type</Button>
-      <Button colorScheme="blue" onClick={handleSubmit}>
+      <Button color={"#FFFF"} backgroundColor={"#19A7CE"} onClick={handleAddInput}>Add New form Type</Button>
+      <Button color={"#FFFF"} backgroundColor={"#19A7CE"}  onClick={handleSubmit}>
         Submit
       </Button>
 
