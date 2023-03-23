@@ -22,7 +22,6 @@ ReactDOM.render(
               <Route index element={<Dashboard />} />
               <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />} />
               <Route path="/form-unik" element={<FormConfiguration />} />
-                
             </Route>
           </Route>
         </Routes>
