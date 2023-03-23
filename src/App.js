@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
+import Formula from "./pages/formula";
 import SilsilahKeluarga from "./pages/silsilah_keluarga";
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
         </Route>
         <Route path="/silsilah-keluarga" element={<Layout />}>
           <Route index element={<SilsilahKeluarga />} />
+        </Route>
+        <Route path="/formula-generator" element={<Layout />}>
+          <Route index element={<Formula />} />
         </Route>
         
       </Routes>
