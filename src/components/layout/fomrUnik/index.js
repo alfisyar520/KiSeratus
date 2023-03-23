@@ -80,8 +80,8 @@ function FormConfiguration() {
             />
           </FormControl>
 
-         <Box mb="12">
-          <Button backgroundColor={"#ff0000"} onClick={() => handleRemoveInput(index)}>Remove</Button>
+         <Box>
+          <Button style={{ marginTop: "30px", color: "#FFFF" }} backgroundColor={"#ff0000"} onClick={() => handleRemoveInput(index)}>Remove</Button>
          </Box>
         </HStack>
       ))}
