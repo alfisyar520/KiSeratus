@@ -75,6 +75,7 @@ function Formula() {
   function handleAddFormula() {
     const added = display.replaceAll(/(sin\(|cos\(|tan\()(\d+)$/g, "$1$2)");
     setFormulas((prevFormulas) => ([...prevFormulas, added]))
+    setIsOpen(false);
   }
 
   useEffect(() => {
