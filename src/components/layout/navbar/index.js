@@ -55,6 +55,8 @@ export default function Navbar() {
     if (isAuth) {
       localStorage.removeItem('USER');
       localStorage.removeItem('tree_data');
+      localStorage.removeItem('data-form-canggih');
+      localStorage.removeItem('events');
       
       toast({
         title: "Logged out.",
