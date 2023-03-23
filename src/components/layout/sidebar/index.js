@@ -78,7 +78,7 @@ export default function Sidebar() {
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="form-canggih">
+          <NavLink to="/table">
             <ListIcon as={HamburgerIcon} color="white" />
             Tabel 4.0
           </NavLink>
@@ -125,7 +125,7 @@ export default function Sidebar() {
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="form-canggih">
+          <NavLink to="/table">
             <ListIcon as={HamburgerIcon} color="white" />
             Tabel 4.0
           </NavLink>

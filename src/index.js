@@ -8,6 +8,7 @@ import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import SilsilahKeluarga from "./pages/silsilah_keluarga";
 import FormConfiguration from "./components/layout/fomrUnik";
+import TablePage from './pages/table';
 
 import './assets/styles/global.scss';
 
@@ -16,13 +17,13 @@ ReactDOM.render(
     <ChakraProvider resetCSS={true}>
       <Router>
         <Routes>
-          <Route path='/' element={<App/>}>
-            <Route path="/login" element={<Login/>} />
+          <Route path='/' element={<App />}>
+            <Route path="/login" element={<Login />} />
             <Route path="/" element={<Layout />}>
               <Route index element={<Dashboard />} />
               <Route path="/silsilah-keluarga" element={<SilsilahKeluarga />} />
               <Route path="/form-unik" element={<FormConfiguration />} />
-                
+              <Route path="/table" element={<TablePage />} />
             </Route>
           </Route>
         </Routes>
