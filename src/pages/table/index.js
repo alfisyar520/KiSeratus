@@ -74,7 +74,7 @@ const TablePage = () => {
 
   return (
     <div>
-      <Heading size='md' as='h1'>
+      <Heading ml={4} mb={4} size='md' as='h1'>
         Table 4.0
       </Heading>
       <Box p={4} w='50%'>
@@ -101,6 +101,11 @@ const TablePage = () => {
       </Box>
       <Box p={4}>
         <Flex>
+          <Box p='4'>
+            <Heading size='md' as='h1'>
+              Table
+            </Heading>
+          </Box>
           <Spacer />
           <Box p='4'>
             <Button rightIcon={<AddIcon />} colorScheme='blue' icon={<AddIcon />}
