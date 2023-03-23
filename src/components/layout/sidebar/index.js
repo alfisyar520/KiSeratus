@@ -131,7 +131,7 @@ export default function Sidebar() {
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="form-canggih">
+          <NavLink to="informasi">
             <ListIcon as={InfoIcon} color="white" />
             Informasi
           </NavLink>
