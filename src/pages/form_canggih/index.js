@@ -11,7 +11,7 @@ const FormCanggih = () => {
   const [maritalStatus, setMaritalStatus] = useState('');
   const [address, setAddress] = useState('');
   const [jobTitle, setJobTitle] = useState('');
-  const [resume, setResume] = useState(null);
+  const [resume, setResume] = useState('');
   const [picture, setPicture] = useState(null);
   const [isTriggerSave, setIsTriggerSave] = useState(false);
 
@@ -125,8 +125,8 @@ const FormCanggih = () => {
             <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
           </FormControl>
           
-          <FormControl id="age" w={100}>
-            <FormLabel>Usia</FormLabel>
+          <FormControl id="age" w={150}>
+            <FormLabel>Usia (tahun)</FormLabel>
             <Input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
           </FormControl>
           
