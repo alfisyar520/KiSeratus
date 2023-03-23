@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Tugas Frontend Aplikasi Q100 Biofarma
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Aplikasi Q100 
+
+KiSeratus, adalah aplikasi unik yang menyediakan beberapa fitur-fitur yang dapat membantu
+Tukang untuk mengerjakan tugasnya , yang mana bisa di akses oleh orang-orang yang sudah
+terdaftar sebelumnya.
+
+# Requirement
+NodeJS minimum version 14
+OS Windows or Mac Or Linux
+
+# Cara Melakukan Instalasi
 
 ## Available Scripts
 To install this project, you can install with this command:
