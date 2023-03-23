@@ -1,0 +1,142 @@
+import { List, ListItem, ListIcon } from "@chakra-ui/react";
+import {
+  CalendarIcon,
+  DragHandleIcon,
+  AtSignIcon,
+  QuestionIcon,
+  InfoIcon,
+  PlusSquareIcon,
+  ChatIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
+
+export default function Sidebar() {
+  // list user = all, jadwalKeluarga, formUnikFormula, formCanggihTabel
+  const [ruleUser, setRuleUser] = useState("all");
+
+  if (ruleUser === "jadwalKeluarga") {
+    return (
+      <List color="white" fontSize="1.2em" spacing={4}>
+        <ListItem>
+          <NavLink to="/">
+            <ListIcon as={DragHandleIcon} color="white" />
+            Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="jadwal">
+            <ListIcon as={CalendarIcon} color="white" />
+            Jadwal 4.0
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="keluarga">
+            <ListIcon as={AtSignIcon} color="white" />
+            Silsilah Keluarga
+          </NavLink>
+        </ListItem>
+      </List>
+    );
+  } else if (ruleUser === "formUnikFormula") {
+    return (
+      <List color="white" fontSize="1.2em" spacing={4}>
+        <ListItem>
+          <NavLink to="/">
+            <ListIcon as={DragHandleIcon} color="white" />
+            Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-unik">
+            <ListIcon as={PlusSquareIcon} color="white" />
+            Form Unik
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="formula-generator">
+            <ListIcon as={QuestionIcon} color="white" />
+            Formula Generator
+          </NavLink>
+        </ListItem>
+      </List>
+    );
+  } else if (ruleUser === "formCanggihTabel") {
+    return (
+      <List color="white" fontSize="1.2em" spacing={4}>
+        <ListItem>
+          <NavLink to="/">
+            <ListIcon as={DragHandleIcon} color="white" />
+            Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-canggih">
+            <ListIcon as={ChatIcon} color="white" />
+            Form Canggih
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-canggih">
+            <ListIcon as={HamburgerIcon} color="white" />
+            Tabel 4.0
+          </NavLink>
+        </ListItem>
+      </List>
+    );
+  } else {
+    return (
+      <List color="white" fontSize="1.2em" spacing={4}>
+        <ListItem>
+          <NavLink to="/">
+            <ListIcon as={DragHandleIcon} color="white" />
+            Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="jadwal">
+            <ListIcon as={CalendarIcon} color="white" />
+            Jadwal 4.0
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="keluarga">
+            <ListIcon as={AtSignIcon} color="white" />
+            Silsilah Keluarga
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-unik">
+            <ListIcon as={PlusSquareIcon} color="white" />
+            Form Unik
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="formula-generator">
+            <ListIcon as={QuestionIcon} color="white" />
+            Formula Generator
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-canggih">
+            <ListIcon as={ChatIcon} color="white" />
+            Form Canggih
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-canggih">
+            <ListIcon as={HamburgerIcon} color="white" />
+            Tabel 4.0
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="form-canggih">
+            <ListIcon as={InfoIcon} color="white" />
+            Informasi
+          </NavLink>
+        </ListItem>
+      </List>
+    );
+  }
+}
