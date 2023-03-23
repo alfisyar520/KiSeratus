@@ -37,17 +37,17 @@ import { USERS } from '../constants/LIST_USERS';
         const user = USERS.find(el => el.id === values.userName);
         if (user) {
             if (user.password === values.password) {
-                if (user.roles.length !== 0) {
+                if (user.roles) {
                     toast({
                         title: 'Selamat datang di KiSeratus',
                         status: 'success',
                         isClosable: true,
                     });
                     localStorage.setItem("USER", JSON.stringify(user));
-                    return navigate("/dashboard");
+                    return navigate("/");
                 }
         
-                if (user.roles.length === 0) {
+                if (user.roles) {
                     toast({
                         title: 'Akun Belum memiliki peran',
                         status: 'warning',

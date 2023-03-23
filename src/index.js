@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
-import Dashboard from './components/pages/Dashboard';
 import { ChakraProvider } from '@chakra-ui/react'
 import App from './App';
+import Layout from "./components/layout";
+import Dashboard from "./pages/dashboard";
+import SilsilahKeluarga from "./pages/silsilah_keluarga";
 
 import './assets/styles/global.scss';
 
@@ -15,7 +17,12 @@ ReactDOM.render(
         <Routes>
           <Route path='/' element={<App/>}>
             <Route path="/login" element={<Login/>} />
-            <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+            </Route>
+            <Route path="/silsilah-keluarga" element={<Layout />}>
+              <Route index element={<SilsilahKeluarga />} />
+            </Route>
           </Route>
         </Routes>
       </Router>
